@@ -7,7 +7,7 @@ from keras.layers.normalization import BatchNormalization
 
 
 class ResearchModels():
-    def __init__(self, nb_classes, num_of_snip, opt_flow_len, image_shape = (224, 224), saved_model=None):
+    def __init__(self, nb_classes, num_of_snip, opt_flow_len, image_shape=(224, 224), saved_model=None):
         """
         `nb_classes` = the number of classes to predict
         `opt_flow_len` = the length of optical flow frames
@@ -19,8 +19,6 @@ class ResearchModels():
         self.load_model = load_model
         self.saved_model = saved_model
         self.nb_classes = nb_classes
-        print("Number of classes:")
-        print(self.nb_classes)
 
         # Set the metrics. Only use top k if there's a need.
         metrics = ['accuracy']

@@ -71,7 +71,8 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
         val_generator = data.stack_generator(batch_size, 'test', name_str=name_str)
 
     # Get the model.
-    temporal_cnn = ResearchModels(nb_classes=len(data.classes), num_of_snip=num_of_snip, opt_flow_len=opt_flow_len, image_shape=image_shape, saved_model=saved_model)
+    temporal_cnn = ResearchModels(nb_classes=len(data.classes), num_of_snip=num_of_snip, opt_flow_len=opt_flow_len,
+                                  image_shape=image_shape, saved_model=saved_model)
 
     # Fit!
     if load_to_memory:
