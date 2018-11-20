@@ -95,7 +95,8 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
                 callbacks=[tb, early_stopper, csv_logger, checkpointer],
                 validation_data=val_generator,
                 validation_steps=1,
-                workers=1)
+                workers=1,
+                use_multiprocessing=True)
 
 
 def main():
