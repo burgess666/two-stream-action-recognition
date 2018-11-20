@@ -81,7 +81,7 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
         X_test, y_test = data.get_all_stacks_in_memory('test')
     else:
         # Get generators.
-        generator = data.stack_generator(batch_size, 'train')
+        train_generator = data.stack_generator(batch_size, 'train')
 
         val_generator = data.stack_generator(batch_size, 'test', name_str=name_str)
 
@@ -102,7 +102,7 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
     else:
         # Use fit generator.
         temporal_cnn.model.fit_generator(
-                generator=generator,
+                generator=train_generator,
                 steps_per_epoch=steps_per_epoch,
                 epochs=nb_epoch,
                 verbose=1,
@@ -115,9 +115,6 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
 
 
 def main():
-    """These are the main training settings. Set each before running
-    this file."""
-    "=============================================================================="
     saved_model = None
     class_limit = 101  # int, can be 1-101 or None
     num_of_snip = 1  # number of chunks used for each video
@@ -126,13 +123,12 @@ def main():
     load_to_memory = False  # pre-load the sequences into memory
     batch_size = 32
     nb_epoch = 1000
-    name_str = None
-    "=============================================================================="
+    #name_str = None
 
     train(num_of_snip=num_of_snip, opt_flow_len=opt_flow_len, saved_model=saved_model,
             class_limit=class_limit, image_shape=image_shape,
             load_to_memory=load_to_memory, batch_size=batch_size,
-            nb_epoch=nb_epoch, name_str=name_str)
+            nb_epoch=nb_epoch)
 
 
 if __name__ == '__main__':
