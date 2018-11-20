@@ -198,12 +198,10 @@ class DataSet():
         for i in range(self.num_of_snip):
             frames += range(start_frame + self.opt_flow_len * i, start_frame + self.opt_flow_len * (i + 1))
 
-        '''
         if train_test == 'train' and random.random() > 0.5:
             flip = True
         else:
             flip = False
-        '''
 
         # loop over frames
         for i_frame in frames:
@@ -216,21 +214,18 @@ class DataSet():
             # mean substraction 
             img = img - np.mean(img)
 
-            '''
             if train_test == 'train' or val_aug == 'center':
                 # crop
                 img = img[left : right, top : bottom]
             else:
-                #resize
+                # resize
                 img = cv2.resize(img, self.image_shape)
-            '''
+
             # normalize pixels
             img = img / 255.
 
-            '''
             if flip:
                 img = -img
-            '''
 
             opt_flow_stack.append(img)
 
@@ -242,14 +237,14 @@ class DataSet():
             img2 = np.array(img2)
             #img2 = np.swapaxes(img2, 0, 1)
             img2 = img2 - np.mean(img2)
-            '''
+
             if train_test == 'train' or val_aug == 'center':
                 # crop
-                img2 = img2[left : right, top : bottom]
+                img2 = img2[left: right, top: bottom]
             else:
                 # resize
                 img2 = cv2.resize(img2, self.image_shape)
-            '''
+
             # normalize pixels
             img2 = img2 / 255.
             opt_flow_stack.append(img2)
@@ -258,11 +253,9 @@ class DataSet():
         #opt_flow_stack = np.swapaxes(opt_flow_stack, 0, 1)
         #opt_flow_stack = np.swapaxes(opt_flow_stack, 1, 2)
 
-        '''
         # random horizontal flip for training sets
         if flip:
             opt_flow_stack = np.flip(opt_flow_stack, 0)
-        '''
 
         return opt_flow_stack
 
