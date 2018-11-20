@@ -218,7 +218,8 @@ class DataSet():
             opt_flow_stack.append(img)
 
             # vertical components
-            img2 = None # reset to be safe
+            # reset to be safe
+            img2 = None
             img2 = cv2.imread(opt_flow_dir_y + '/frame' + "%06d"%(i_frame) + '.jpg', 0)
             # mean substraction 
             img2 = np.array(img2)
@@ -228,14 +229,15 @@ class DataSet():
                 # crop
                 img2 = img2[left : right, top : bottom]
             else:
-                #resize
+                # resize
                 img2 = cv2.resize(img2, self.image_shape)
-            img2 = img2 / 255. # normalize pixels 
+            # normalize pixels
+            img2 = img2 / 255.
             opt_flow_stack.append(img2)
 
         opt_flow_stack = np.array(opt_flow_stack)
-        opt_flow_stack = np.swapaxes(opt_flow_stack, 0, 1)
-        opt_flow_stack = np.swapaxes(opt_flow_stack, 1, 2)
+        #opt_flow_stack = np.swapaxes(opt_flow_stack, 0, 1)
+        #opt_flow_stack = np.swapaxes(opt_flow_stack, 1, 2)
 
         # random horizontal flip for training sets
         if flip:
