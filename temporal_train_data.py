@@ -43,7 +43,7 @@ class DataSet():
         self.class_limit = class_limit
         self.image_shape = image_shape
         self.original_image_shape = original_image_shape
-        self.opt_flow_path = os.path.join('/data/d14122793/two_stream', 'tvl1_flow')
+        self.opt_flow_path = os.path.join('/data/d14122793/two_stream', 'optical_flow')
 
         # Get the data.
         self.data_list = self.get_data_list()

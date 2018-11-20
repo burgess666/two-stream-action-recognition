@@ -32,28 +32,22 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
         name_str = time_str
 
     # Callbacks: Save the model.
-    directory1 = os.path.join('/data/d14122793/two_stream', 'checkpoints', name_str)
-    if not os.path.exists(directory1):
-            os.makedirs(directory1)
+    directory1 = os.path.join('/data/d14122793/two_stream', 'checkpoints')
     checkpointer = ModelCheckpoint(
             filepath=os.path.join(directory1,
-                    '{epoch:03d}-{val_loss:.3f}.hdf5'),
+                    'Temporal-Training-{epoch:03d}-{val_loss:.3f}.hdf5'),
             verbose=1,
             save_best_only=True)
 
     # Callbacks: TensorBoard
-    directory2 = os.path.join('/data/d14122793/two_stream', 'tb', name_str)
-    if not os.path.exists(directory2):
-            os.makedirs(directory2)
-    tb = TensorBoard(log_dir=os.path.join(directory2))
+    directory2 = os.path.join('/data/d14122793/two_stream', 'tb')
+    tb = TensorBoard(log_dir=os.path.join(directory2, 'Temporal'+time_str))
 
     # Callbacks: Early stopper.
     early_stopper = EarlyStopping(monitor='loss', patience=10)
 
     # Callbacks: Save results.
-    directory3 = os.path.join('/data/d14122793/two_stream', 'logs', name_str)
-    if not os.path.exists(directory3):
-            os.makedirs(directory3)
+    directory3 = os.path.join('/data/d14122793/two_stream', 'logs')
     timestamp = time.time()
     csv_logger = CSVLogger(os.path.join(directory3, 'training-temporal' + \
             str(timestamp) + '.log'))
@@ -130,8 +124,8 @@ def main():
     opt_flow_len = 10  # number of optical flow frames used
     image_shape = (224, 224)
     load_to_memory = False  # pre-load the sequences into memory
-    batch_size = 64
-    nb_epoch = 2222
+    batch_size = 32
+    nb_epoch = 1000
     name_str = None
     "=============================================================================="
 

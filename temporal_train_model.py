@@ -5,6 +5,7 @@ from keras.layers.convolutional import Conv2D, MaxPooling2D
 from keras.optimizers import SGD, Adam
 from keras.layers.normalization import BatchNormalization
 
+
 class ResearchModels():
     def __init__(self, nb_classes, num_of_snip, opt_flow_len, image_shape = (224, 224), saved_model=None):
         """
@@ -34,7 +35,7 @@ class ResearchModels():
             self.input_shape = (image_shape[0], image_shape[1], opt_flow_len * 2 * self.num_of_snip)
             self.model = self.cnn_temporal()
 
-        optimizer = SGD(lr=1e-2, momentum=0.9, nesterov=True)
+        optimizer = Adam(1e-04)
 
         self.model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=metrics)
 
