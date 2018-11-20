@@ -11,13 +11,10 @@ from os import makedirs
 
 def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
         class_limit=None, image_shape=(224, 224),
-        load_to_memory=False, batch_size=32, nb_epoch=100, name_str=None):
+        load_to_memory=False, batch_size=32, nb_epoch=100):
 
     # Get local time.
     time_str = time.strftime("%y%m%d%H%M", time.localtime())
-
-    if name_str == None:
-        name_str = time_str
 
     # Callbacks: Save the model.
     directory1 = os.path.join('/data/d14122793/two_stream', 'checkpoints')
@@ -68,7 +65,7 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
         # Get generators.
         train_generator = data.stack_generator(batch_size, 'train')
 
-        val_generator = data.stack_generator(batch_size, 'test', name_str=name_str)
+        val_generator = data.stack_generator(batch_size, 'test')
 
     # Get the model.
     temporal_cnn = ResearchModels(nb_classes=len(data.classes), num_of_snip=num_of_snip, opt_flow_len=opt_flow_len,

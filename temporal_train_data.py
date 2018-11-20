@@ -163,7 +163,7 @@ class DataSet():
         opt_flow_stack = []
         opt_flow_dir_x = os.path.join(self.opt_flow_path, 'u', row[2])
         opt_flow_dir_y = os.path.join(self.opt_flow_path, 'v', row[2])
-        '''
+
         # spatial parameters
         if train_test == 'train':
             if crop == 'random':
@@ -180,7 +180,7 @@ class DataSet():
         right = left + self.image_shape[0]
         bottom = top + self.image_shape[1]
         
-        '''
+
         # temporal parameters
         total_frames = len(os.listdir(opt_flow_dir_x))
         win_len = (total_frames - self.opt_flow_len) // self.num_of_snip # starting frame selection window length
