@@ -111,7 +111,7 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
                 validation_steps=1,
                 max_queue_size=20,
                 workers=1,
-                use_multiprocessing=False)
+                use_multiprocessing=True)
 
 
 def main():
@@ -123,12 +123,10 @@ def main():
     load_to_memory = False  # pre-load the sequences into memory
     batch_size = 32
     nb_epoch = 1000
-    #name_str = None
 
     train(num_of_snip=num_of_snip, opt_flow_len=opt_flow_len, saved_model=saved_model,
-            class_limit=class_limit, image_shape=image_shape,
-            load_to_memory=load_to_memory, batch_size=batch_size,
-            nb_epoch=nb_epoch)
+          class_limit=class_limit, image_shape=image_shape, load_to_memory=load_to_memory,
+          batch_size=batch_size, nb_epoch=nb_epoch)
 
 
 if __name__ == '__main__':
