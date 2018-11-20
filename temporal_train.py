@@ -110,8 +110,7 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
                 validation_data=val_generator,
                 validation_steps=1,
                 max_queue_size=20,
-                workers=1,
-                use_multiprocessing=True)
+                workers=4)
 
 
 def main():
