@@ -126,13 +126,12 @@ class DataSet():
 
         idx = 0
 
-        print("\nCreating %s generator with %d samples.\n" % (train_test,
-            len(data_list)))
+        print("\nCreating %s generator with %d samples.\n" % (train_test, len(data_list)))
 
         while 1:
             idx += 1
             print("Generator yielding batch No.%d" % idx)
-            if(train_test == 'test'):
+            if train_test == 'test':
                 print("Validating for job: %s" % name_str)
             X, y = [], []
 
@@ -168,7 +167,12 @@ class DataSet():
         if train_test == 'train':
             if crop == 'random':
                 # crop at center and four corners randomly for training
-                left, top = random.choice([[0, 0], [0, self.original_image_shape[1] - self.image_shape[1]], [self.original_image_shape[0] - self.image_shape[0], 0], [self.original_image_shape[0] - self.image_shape[0], self.original_image_shape[1] - self.image_shape[1]], [int((self.original_image_shape[0] - self.image_shape[0]) * 0.5), int((self.original_image_shape[1] - self.image_shape[1]) * 0.5)]])
+                left, top = random.choice([[0, 0], [0, self.original_image_shape[1] - self.image_shape[1]],
+                                           [self.original_image_shape[0] - self.image_shape[0], 0],
+                                           [self.original_image_shape[0] - self.image_shape[0],
+                                            self.original_image_shape[1] - self.image_shape[1]],
+                                           [int((self.original_image_shape[0] - self.image_shape[0]) * 0.5),
+                                            int((self.original_image_shape[1] - self.image_shape[1]) * 0.5)]])
             else:
                 # random crop for training set
                 left = int((self.original_image_shape[0] - self.image_shape[0]) * random.random())
@@ -179,11 +183,11 @@ class DataSet():
             top = int((self.original_image_shape[1] - self.image_shape[1]) * 0.5)
         right = left + self.image_shape[0]
         bottom = top + self.image_shape[1]
-        
 
         # temporal parameters
         total_frames = len(os.listdir(opt_flow_dir_x))
-        win_len = (total_frames - self.opt_flow_len) // self.num_of_snip # starting frame selection window length
+        # starting frame selection window length
+        win_len = (total_frames - self.opt_flow_len) // self.num_of_snip
         if train_test == 'train':
             start_frame = int(random.random() * win_len) + 1
         else:
@@ -206,8 +210,8 @@ class DataSet():
 
             # horizontal components
             img = None # reset to be safe
-            img = cv2.imread(opt_flow_dir_x + '/frame' + "%06d"%(i_frame) + '.jpg', 0)
-            print(opt_flow_dir_x + '/frame' + "%06d"%(i_frame) + '.jpg')
+            img = cv2.imread(opt_flow_dir_x + '/frame' + "%06d" % i_frame + '.jpg', 0)
+            print(opt_flow_dir_x + '/frame' + "%06d" % i_frame + '.jpg')
             img = np.array(img)
             # mean substraction 
             img = img - np.mean(img)
