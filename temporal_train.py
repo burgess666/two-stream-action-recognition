@@ -1,20 +1,16 @@
 """
 Train our temporal-stream CNN on optical flow frames.
 """
-from keras.callbacks import TensorBoard, ModelCheckpoint, EarlyStopping, CSVLogger
+from keras.callbacks import ModelCheckpoint, EarlyStopping, CSVLogger
 from temporal_train_model import ResearchModels
 from temporal_train_data import DataSet
 import time
 import os.path
-from os import makedirs
 
 
 def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
         class_limit=None, image_shape=(224, 224),
         load_to_memory=False, batch_size=32, nb_epoch=100):
-
-    # Get local time.
-    time_str = time.strftime("%y%m%d%H%M", time.localtime())
 
     # Callbacks: Save the model.
     directory1 = os.path.join('/data/d14122793/two_stream', 'checkpoints')
@@ -23,10 +19,6 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
                     'Temporal-Training-{epoch:03d}-{val_loss:.3f}.hdf5'),
             verbose=1,
             save_best_only=True)
-
-    # Callbacks: TensorBoard
-    directory2 = os.path.join('/data/d14122793/two_stream', 'tb')
-    tb = TensorBoard(log_dir=os.path.join(directory2, 'Temporal'+time_str))
 
     # Callbacks: Early stopper.
     early_stopper = EarlyStopping(monitor='loss', patience=10)
@@ -80,7 +72,7 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
                 batch_size=batch_size,
                 validation_data=(X_test, y_test),
                 verbose=1,
-                callbacks=[tb, early_stopper, csv_logger],
+                callbacks=[early_stopper, csv_logger],
                 epochs=nb_epoch)
     else:
         # Use fit generator.
@@ -89,7 +81,7 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
                 steps_per_epoch=steps_per_epoch,
                 epochs=nb_epoch,
                 verbose=1,
-                callbacks=[tb, early_stopper, csv_logger, checkpointer],
+                callbacks=[early_stopper, csv_logger, checkpointer],
                 validation_data=val_generator,
                 validation_steps=1,
                 workers=1,

@@ -32,7 +32,8 @@ def threadsafe_generator(func):
 
 
 class DataSet():
-    def __init__(self, num_of_snip=1, opt_flow_len=10, image_shape=(224, 224), original_image_shape=(341, 256), class_limit=None):
+    def __init__(self, num_of_snip=1, opt_flow_len=10, image_shape=(224, 224),
+                 original_image_shape=(341, 256), class_limit=None):
         """Constructor.
         opt_flow_len = (int) the number of optical flow frames to consider
         class_limit = (int) number of classes to limit the data to.
@@ -52,7 +53,7 @@ class DataSet():
         self.classes = self.get_classes()
 
         # Now do some minor data cleaning
-        #self.data_list = self.clean_data_list()
+        self.data_list = self.clean_data_list()
 
     @staticmethod
     def get_data_list():
@@ -63,7 +64,6 @@ class DataSet():
 
         return data_list
 
-    '''
     def clean_data_list(self):
         data_list_clean = []
         for item in self.data_list:
@@ -71,7 +71,6 @@ class DataSet():
                 data_list_clean.append(item)
 
         return data_list_clean
-    '''
 
     def get_classes(self):
         """Extract the classes from our data, '\n'. If we want to limit them,
