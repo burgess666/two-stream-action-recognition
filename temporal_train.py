@@ -1,24 +1,12 @@
 """
 Train our temporal-stream CNN on optical flow frames.
 """
-from keras.callbacks import TensorBoard, ModelCheckpoint, EarlyStopping, CSVLogger, LearningRateScheduler
+from keras.callbacks import TensorBoard, ModelCheckpoint, EarlyStopping, CSVLogger
 from temporal_train_model import ResearchModels
 from temporal_train_data import DataSet
 import time
 import os.path
 from os import makedirs
-
-
-def fixed_schedule(epoch):
-    initial_lr = 1.e-2
-    lr = initial_lr
-
-    if epoch == 1389:
-        lr = 0.1 * lr
-    if epoch == 1944:
-        lr = 0.1 * lr
-
-    return lr
 
 
 def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
@@ -51,9 +39,6 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
     timestamp = time.time()
     csv_logger = CSVLogger(os.path.join(directory3, 'training-temporal' + \
             str(timestamp) + '.log'))
-
-    # Learning rate schedule.
-    lr_schedule = LearningRateScheduler(fixed_schedule, verbose=0)
 
     print("class_limit = ", class_limit)
     # Get the data and process it.
@@ -106,7 +91,7 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
                 steps_per_epoch=steps_per_epoch,
                 epochs=nb_epoch,
                 verbose=1,
-                callbacks=[tb, early_stopper, csv_logger, checkpointer, lr_schedule],
+                callbacks=[tb, early_stopper, csv_logger, checkpointer],
                 validation_data=val_generator,
                 validation_steps=1,
                 workers=1)
