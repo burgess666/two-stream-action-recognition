@@ -1,0 +1,152 @@
+2018-11-20 22:18:10.043343: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-11-20 22:18:12.274588: E tensorflow/stream_executor/cuda/cuda_driver.cc:300] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2018-11-20 22:18:12.274712: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:163] retrieving CUDA diagnostic information for host: ADAPT-02
+2018-11-20 22:18:12.274728: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:170] hostname: ADAPT-02
+2018-11-20 22:18:12.274815: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:194] libcuda reported version is: 387.26.0
+2018-11-20 22:18:12.274879: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:198] kernel reported version is: 387.26.0
+2018-11-20 22:18:12.274894: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:305] kernel version seems to match DSO: 387.26.0
+Using TensorFlow backend.
+class_limit =  101
+Loading CNN model for the temporal stream.
+Input shape:
+(224, 224, 20)
+Numer of classes:
+101
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_1 (Conv2D)            (None, 112, 112, 96)      94176     
+_________________________________________________________________
+batch_normalization_1 (Batch (None, 112, 112, 96)      384       
+_________________________________________________________________
+activation_1 (Activation)    (None, 112, 112, 96)      0         
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 56, 56, 96)        0         
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, 28, 28, 256)       614656    
+_________________________________________________________________
+activation_2 (Activation)    (None, 28, 28, 256)       0         
+_________________________________________________________________
+max_pooling2d_2 (MaxPooling2 (None, 14, 14, 256)       0         
+_________________________________________________________________
+conv2d_3 (Conv2D)            (None, 14, 14, 512)       1180160   
+_________________________________________________________________
+conv2d_4 (Conv2D)            (None, 14, 14, 512)       2359808   
+_________________________________________________________________
+conv2d_5 (Conv2D)            (None, 14, 14, 512)       2359808   
+_________________________________________________________________
+max_pooling2d_3 (MaxPooling2 (None, 7, 7, 512)         0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 25088)             0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 4096)              102764544 
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 4096)              0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 2048)              8390656   
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 2048)              0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 101)               206949    
+=================================================================
+Total params: 117,971,141
+Trainable params: 117,970,949
+Non-trainable params: 192
+_________________________________________________________________
+None
+Epoch 1/1000
+
+Creating train generator with 9537 samples.
+
+Generator yielding batch No.1
+
+Creating test generator with 3783 samples.
+
+Generator yielding batch No.1
+Validating for job: N/D
+/data/d14122793/two_stream/optical_flow/u/v_BaseballPitch_g03_c02/frame000055.jpg
+/data/d14122793/two_stream/optical_flow/u/v_Diving_g16_c01/frame000199.jpg
+/data/d14122793/two_stream/optical_flow/u/v_BaseballPitch_g03_c02/frame000056.jpg
+/data/d14122793/two_stream/optical_flow/u/v_BaseballPitch_g03_c02/frame000057.jpg
+/data/d14122793/two_stream/optical_flow/u/v_Diving_g16_c01/frame000200.jpg
+/data/d14122793/two_stream/optical_flow/u/v_Diving_g16_c01/frame000201.jpg
+/data/d14122793/two_stream/optical_flow/u/v_Diving_g16_c01/frame000202.jpg
+/data/d14122793/two_stream/optical_flow/u/v_BaseballPitch_g03_c02/frame000058.jpg
+/data/d14122793/two_stream/optical_flow/u/v_BaseballPitch_g03_c02/frame000059.jpg
+/data/d14122793/two_stream/optical_flow/u/v_Diving_g16_c01/frame000203.jpg
+/data/d14122793/two_stream/optical_flow/u/v_BaseballPitch_g03_c02/frame000060.jpg
+/data/d14122793/two_stream/optical_flow/u/v_Diving_g16_c01/frame000204.jpg
+/data/d14122793/two_stream/optical_flow/u/v_Diving_g16_c01/frame000205.jpg
+/data/d14122793/two_stream/optical_flow/u/v_Diving_g16_c01/frame000206.jpg
+/data/d14122793/two_stream/optical_flow/u/v_BaseballPitch_g03_c02/frame000061.jpg
+/data/d14122793/two_stream/optical_flow/u/v_BaseballPitch_g03_c02/frame000062.jpg
+/data/d14122793/two_stream/optical_flow/u/v_Diving_g16_c01/frame000207.jpg
+/data/d14122793/two_stream/optical_flow/u/v_BaseballPitch_g03_c02/frame000063.jpg
+/data/d14122793/two_stream/optical_flow/u/v_Diving_g16_c01/frame000208.jpg
+/data/d14122793/two_stream/optical_flow/u/v_BaseballPitch_g03_c02/frame000064.jpg
+/data/d14122793/two_stream/optical_flow/u/v_PlayingDaf_g21_c04/frame000198.jpg
+/data/d14122793/two_stream/optical_flow/u/v_PlayingDaf_g21_c04/frame000199.jpg
+/data/d14122793/two_stream/optical_flow/u/v_PlayingDaf_g21_c04/frame000200.jpg
+/data/d14122793/two_stream/optical_flow/u/v_PlayingDaf_g21_c04/frame000201.jpg
+/data/d14122793/two_stream/optical_flow/u/v_PlayingDaf_g21_c04/frame000202.jpg
+/data/d14122793/two_stream/optical_flow/u/v_PlayingDaf_g21_c04/frame000203.jpg
+/data/d14122793/two_stream/optical_flow/u/v_PlayingDaf_g21_c04/frame000204.jpg
+/data/d14122793/two_stream/optical_flow/u/v_PlayingDaf_g21_c04/frame000205.jpg
+/data/d14122793/two_stream/optical_flow/u/v_PlayingDaf_g21_c04/frame000206.jpg
+/data/d14122793/two_stream/optical_flow/u/v_PlayingDaf_g21_c04/frame000207.jpg
+/data/d14122793/two_stream/optical_flow/u/v_HammerThrow_g22_c04/frame000050.jpg
+/data/d14122793/two_stream/optical_flow/u/v_HammerThrow_g22_c04/frame000051.jpg
+/data/d14122793/two_stream/optical_flow/u/v_HammerThrow_g22_c04/frame000052.jpg
+/data/d14122793/two_stream/optical_flow/u/v_HammerThrow_g22_c04/frame000053.jpg
+/data/d14122793/two_stream/optical_flow/u/v_HammerThrow_g22_c04/frame000054.jpg
+/data/d14122793/two_stream/optical_flow/u/v_HammerThrow_g22_c04/frame000055.jpg
+/data/d14122793/two_stream/optical_flow/u/v_HammerThrow_g22_c04/frame000056.jpg
+/data/d14122793/two_stream/optical_flow/u/v_HammerThrow_g22_c04/frame000057.jpg
+/data/d14122793/two_stream/optical_flow/u/v_HammerThrow_g22_c04/frame000058.jpg
+/data/d14122793/two_stream/optical_flow/u/v_HammerThrow_g22_c04/frame000059.jpg
+/data/d14122793/two_stream/optical_flow/u/v_RockClimbingIndoor_g18_c01/frame000105.jpg
+/data/d14122793/two_stream/optical_flow/u/v_RockClimbingIndoor_g18_c01/frame000106.jpg
+/data/d14122793/two_stream/optical_flow/u/v_RockClimbingIndoor_g18_c01/frame000107.jpg
+/data/d14122793/two_stream/optical_flow/u/v_RockClimbingIndoor_g18_c01/frame000108.jpg
+/data/d14122793/two_stream/optical_flow/u/v_RockClimbingIndoor_g18_c01/frame000109.jpg
+/data/d14122793/two_stream/optical_flow/u/v_RockClimbingIndoor_g18_c01/frame000110.jpg
+/data/d14122793/two_stream/optical_flow/u/v_RockClimbingIndoor_g18_c01/frame000111.jpg
+/data/d14122793/two_stream/optical_flow/u/v_RockClimbingIndoor_g18_c01/frame000112.jpg
+/data/d14122793/two_stream/optical_flow/u/v_RockClimbingIndoor_g18_c01/frame000113.jpg
+/data/d14122793/two_stream/optical_flow/u/v_RockClimbingIndoor_g18_c01/frame000114.jpg
+Traceback (most recent call last):
+  File "temporal_train.py", line 107, in <module>
+    main()
+  File "temporal_train.py", line 103, in main
+    batch_size=batch_size, nb_epoch=nb_epoch)
+  File "temporal_train.py", line 88, in train
+    use_multiprocessing=False)
+  File "/home/ICTDOMAIN/d14122793/virtual_env/dl/ucf101/lib/python3.5/site-packages/keras/legacy/interfaces.py", line 91, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ICTDOMAIN/d14122793/virtual_env/dl/ucf101/lib/python3.5/site-packages/keras/engine/training.py", line 1418, in fit_generator
+    initial_epoch=initial_epoch)
+  File "/home/ICTDOMAIN/d14122793/virtual_env/dl/ucf101/lib/python3.5/site-packages/keras/engine/training_generator.py", line 181, in fit_generator
+    generator_output = next(output_generator)
+  File "/home/ICTDOMAIN/d14122793/virtual_env/dl/ucf101/lib/python3.5/site-packages/keras/utils/data_utils.py", line 709, in get
+    six.reraise(*sys.exc_info())
+  File "/home/ICTDOMAIN/d14122793/virtual_env/dl/ucf101/lib/python3.5/site-packages/six.py", line 693, in reraise
+    raise value
+  File "/home/ICTDOMAIN/d14122793/virtual_env/dl/ucf101/lib/python3.5/site-packages/keras/utils/data_utils.py", line 685, in get
+    inputs = self.queue.get(block=True).get()
+  File "/usr/lib/python3.5/multiprocessing/pool.py", line 608, in get
+    raise self._value
+  File "/usr/lib/python3.5/multiprocessing/pool.py", line 119, in worker
+    result = (True, func(*args, **kwds))
+  File "/home/ICTDOMAIN/d14122793/virtual_env/dl/ucf101/lib/python3.5/site-packages/keras/utils/data_utils.py", line 626, in next_sample
+    return six.next(_SHARED_SEQUENCES[uid])
+  File "/home/ICTDOMAIN/d14122793/code/two-stream-action-recognition/temporal_train_data.py", line 24, in __next__
+    return next(self.iterator)
+  File "/home/ICTDOMAIN/d14122793/code/two-stream-action-recognition/temporal_train_data.py", line 146, in stack_generator
+    stack = self.get_stacked_opt_flows(row, train_test)
+  File "/home/ICTDOMAIN/d14122793/code/two-stream-action-recognition/temporal_train_data.py", line 252, in get_stacked_opt_flows
+    opt_flow_stack = np.swapaxes(opt_flow_stack, 0, 1)
+  File "/home/ICTDOMAIN/d14122793/virtual_env/dl/ucf101/lib/python3.5/site-packages/numpy/core/fromnumeric.py", line 549, in swapaxes
+    return _wrapfunc(a, 'swapaxes', axis1, axis2)
+  File "/home/ICTDOMAIN/d14122793/virtual_env/dl/ucf101/lib/python3.5/site-packages/numpy/core/fromnumeric.py", line 51, in _wrapfunc
+    return getattr(obj, method)(*args, **kwds)
+numpy.core._internal.AxisError: axis2: axis 1 is out of bounds for array of dimension 1
