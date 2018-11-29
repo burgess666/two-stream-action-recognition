@@ -210,7 +210,7 @@ class DataSet():
             img = cv2.imread(opt_flow_dir_x + '/frame' + "%06d" % i_frame + '.jpg', 0)
             print(opt_flow_dir_x + '/frame' + "%06d" % i_frame + '.jpg')
             img = np.array(img)
-            #img = np.swapaxes(img, 0, 1)
+            img = np.swapaxes(img, 0, 1)
             # mean substraction 
             img = img - np.mean(img)
 
