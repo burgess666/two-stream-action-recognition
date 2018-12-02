@@ -47,7 +47,7 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
 
     # Get samples per epoch.
     # Multiply by 0.7 to attempt to guess how much of data.data is the train set.
-    steps_per_epoch = (len(data.data_list) * 0.7) // batch_size
+    steps_per_epoch = len(data.data_list) // batch_size
 
     if load_to_memory:
         # Get data.
@@ -91,7 +91,7 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
 def main():
     saved_model = None
     class_limit = 101  # int, can be 1-101 or None
-    num_of_snip = 1  # number of chunks used for each video
+    num_of_snip = 5  # number of chunks used for each video
     opt_flow_len = 10  # number of optical flow frames used
     image_shape = (224, 224)
     load_to_memory = False  # pre-load the sequences into memory

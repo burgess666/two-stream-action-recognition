@@ -8,7 +8,7 @@ import random
 import threading
 from keras.utils import to_categorical
 import cv2
-#from keras.preprocessing import image
+from keras.preprocessing import image
 
 
 class threadsafe_iterator:
@@ -208,7 +208,7 @@ class DataSet():
             # horizontal components
             img = None # reset to be safe
             img = cv2.imread(opt_flow_dir_x + '/frame' + "%06d" % i_frame + '.jpg', 0)
-            print(opt_flow_dir_x + '/frame' + "%06d" % i_frame + '.jpg')
+            #print(opt_flow_dir_x + '/frame' + "%06d" % i_frame + '.jpg')
             img = np.array(img)
             img = np.swapaxes(img, 0, 1)
             # mean substraction 
@@ -233,6 +233,7 @@ class DataSet():
             # reset to be safe
             img2 = None
             img2 = cv2.imread(opt_flow_dir_y + '/frame' + "%06d"%(i_frame) + '.jpg', 0)
+            #print(opt_flow_dir_y + '/frame' + "%06d" % i_frame + '.jpg')
             # mean substraction 
             img2 = np.array(img2)
             img2 = np.swapaxes(img2, 0, 1)
@@ -258,5 +259,3 @@ class DataSet():
             opt_flow_stack = np.flip(opt_flow_stack, 0)
 
         return opt_flow_stack
-
-
