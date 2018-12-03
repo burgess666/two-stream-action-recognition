@@ -206,7 +206,8 @@ class DataSet():
         for i_frame in frames:
 
             # horizontal components
-            img = None # reset to be safe
+            # reset to be safe
+            img = None
             img = cv2.imread(opt_flow_dir_x + '/frame' + "%06d" % i_frame + '.jpg', 0)
             print(opt_flow_dir_x + '/frame' + "%06d" % i_frame + '.jpg')
             img = np.array(img)
