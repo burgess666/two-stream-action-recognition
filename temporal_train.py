@@ -95,7 +95,7 @@ def main():
     opt_flow_len = 10  # number of optical flow frames used
     image_shape = (224, 224)
     load_to_memory = False  # pre-load the sequences into memory
-    batch_size = 64
+    batch_size = 16
     nb_epoch = 1000
 
     train(num_of_snip=num_of_snip, opt_flow_len=opt_flow_len, saved_model=saved_model,
