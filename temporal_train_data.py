@@ -33,7 +33,7 @@ def threadsafe_generator(func):
 
 class DataSet():
     def __init__(self, num_of_snip=1, opt_flow_len=10, image_shape=(224, 224),
-                 original_image_shape=(256, 256), class_limit=None):
+                 original_image_shape=(341, 256), class_limit=None):
         """Constructor.
         opt_flow_len = (int) the number of optical flow frames to consider
         class_limit = (int) number of classes to limit the data to.

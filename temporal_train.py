@@ -1,12 +1,23 @@
 """
 Train our temporal-stream CNN on optical flow frames.
 """
-from keras.callbacks import ModelCheckpoint, EarlyStopping, CSVLogger
+from keras.callbacks import ModelCheckpoint, EarlyStopping, CSVLogger, LearningRateScheduler
 from temporal_train_model import ResearchModels
 from temporal_train_data import DataSet
 import time
 import os.path
 
+
+def fixed_schedule(epoch):
+    initial_lr = 1.e-2
+    lr = initial_lr
+
+    if epoch == 1389:
+        lr = 0.1 * lr
+    if epoch == 1944:
+        lr = 0.1 * lr
+
+    return lr
 
 def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
         class_limit=None, image_shape=(224, 224),
@@ -21,13 +32,16 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
             save_best_only=True)
 
     # Callbacks: Early stopper.
-    early_stopper = EarlyStopping(monitor='loss', patience=10)
+    early_stopper = EarlyStopping(monitor='loss', patience=100)
 
     # Callbacks: Save results.
     directory3 = os.path.join('/data/d14122793/two_stream', 'logs')
     timestamp = time.time()
     csv_logger = CSVLogger(os.path.join(directory3, 'training-temporal' + \
             str(timestamp) + '.log'))
+
+    # Learning rate schedule.
+    lr_schedule = LearningRateScheduler(fixed_schedule, verbose=0)
 
     print("class_limit = ", class_limit)
     # Get the data and process it.
@@ -47,7 +61,7 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
 
     # Get samples per epoch.
     # Multiply by 0.7 to attempt to guess how much of data.data is the train set.
-    steps_per_epoch = len(data.data_list) // batch_size
+    steps_per_epoch = (len(data.data_list) * 0.7) // batch_size
 
     if load_to_memory:
         # Get data.
@@ -81,7 +95,7 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
                 steps_per_epoch=steps_per_epoch,
                 epochs=nb_epoch,
                 verbose=1,
-                callbacks=[early_stopper, csv_logger, checkpointer],
+                callbacks=[early_stopper, csv_logger, checkpointer, lr_schedule],
                 validation_data=val_generator,
                 validation_steps=1,
                 workers=1,
@@ -95,8 +109,8 @@ def main():
     opt_flow_len = 10  # number of optical flow frames used
     image_shape = (224, 224)
     load_to_memory = False  # pre-load the sequences into memory
-    batch_size = 16
-    nb_epoch = 1000
+    batch_size = 64
+    nb_epoch = 2222
 
     train(num_of_snip=num_of_snip, opt_flow_len=opt_flow_len, saved_model=saved_model,
           class_limit=class_limit, image_shape=image_shape, load_to_memory=load_to_memory,

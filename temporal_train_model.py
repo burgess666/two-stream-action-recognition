@@ -33,8 +33,8 @@ class ResearchModels():
             self.input_shape = (image_shape[0], image_shape[1], opt_flow_len * 2 * self.num_of_snip)
             self.model = self.cnn_temporal()
 
-        optimizer = Adam(1e-04)
-        #optimizer = SGD(lr=1e-2, momentum=0.9, nesterov=True)
+        #optimizer = Adam(1e-04)
+        optimizer = SGD(lr=1e-2, momentum=0.9, nesterov=True)
 
         self.model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=metrics)
 
