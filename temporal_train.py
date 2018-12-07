@@ -32,7 +32,7 @@ def train(num_of_snip=5, opt_flow_len=10, saved_model=None,
             save_best_only=True)
 
     # Callbacks: Early stopper.
-    early_stopper = EarlyStopping(monitor='loss', patience=100)
+    early_stopper = EarlyStopping(monitor='loss', patience=200)
 
     # Callbacks: Save results.
     directory3 = os.path.join('/data/d14122793/two_stream', 'logs')
@@ -109,8 +109,8 @@ def main():
     opt_flow_len = 10  # number of optical flow frames used
     image_shape = (224, 224)
     load_to_memory = False  # pre-load the sequences into memory
-    batch_size = 64
-    nb_epoch = 2222
+    batch_size = 256
+    nb_epoch = 2300
 
     train(num_of_snip=num_of_snip, opt_flow_len=opt_flow_len, saved_model=saved_model,
           class_limit=class_limit, image_shape=image_shape, load_to_memory=load_to_memory,

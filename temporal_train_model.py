@@ -26,10 +26,10 @@ class ResearchModels():
             metrics.append('top_k_categorical_accuracy')
 
         if self.saved_model is not None:
-            print("Loading model %s" % self.saved_model)
+            #print("Loading model %s" % self.saved_model)
             self.model = load_model(self.saved_model)
         else:
-            print("Loading CNN model for the temporal stream.")
+            #print("Loading CNN model for the temporal stream.")
             self.input_shape = (image_shape[0], image_shape[1], opt_flow_len * 2 * self.num_of_snip)
             self.model = self.cnn_temporal()
 
@@ -42,10 +42,10 @@ class ResearchModels():
 
     # CNN model for the temporal stream
     def cnn_temporal(self):
-        print("Input shape:")
-        print(self.input_shape)
-        print("Numer of classes:")
-        print(self.nb_classes)
+        #print("Input shape:")
+        #print(self.input_shape)
+        #print("Numer of classes:")
+        #print(self.nb_classes)
 
         #model
         model = Sequential()
